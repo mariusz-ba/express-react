@@ -19,7 +19,7 @@ app.set('json spaces', 2);
 // Middleware
 app.use(webpackMiddleware(webpack(webpackConfig)));
 app.use(sass({
-  src: path.join(__dirname, 'sass'),
+  src: path.join(__dirname, 'src/sass'),
   dest: path.join(__dirname, 'public/css'),
   debug: true,
   outputStyle: 'compressed',
