@@ -8,7 +8,7 @@ export default {
     publicPath: '/'
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.js$/,
         include: path.join(__dirname, 'client'),
