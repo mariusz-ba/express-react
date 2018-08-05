@@ -1,5 +1,6 @@
 // Module dependencies
 import express from 'express';
+import helmet from 'helmet';
 import path from 'path';
 
 import webpack from 'webpack';
@@ -16,6 +17,7 @@ app.set('json spaces', 2);
 
 
 // Middleware
+app.use(helmet());
 app.use(express.static(path.join(__dirname, '../../dist')));
 app.use(webpackDevMiddleware(webpack(webpackConfig)));
 
