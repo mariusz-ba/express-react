@@ -1,11 +1,10 @@
 // Module dependencies
 import express from 'express';
 import path from 'path';
-import sass from 'node-sass-middleware';
 
 import webpack from 'webpack';
-import webpackMiddleware from 'webpack-dev-middleware';
-import webpackConfig from '../webpack.config.dev.js';
+import webpackConfig from '../../webpack.config.dev';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 
 const app = express();
 
@@ -17,15 +16,8 @@ app.set('json spaces', 2);
 
 
 // Middleware
-app.use(webpackMiddleware(webpack(webpackConfig)));
-app.use(sass({
-  src: path.join(__dirname, 'src/sass'),
-  dest: path.join(__dirname, 'public/css'),
-  debug: true,
-  outputStyle: 'compressed',
-  prefix: '/css'
-}));
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../../dist')));
+app.use(webpackDevMiddleware(webpack(webpackConfig)));
 
 
 // Test route
@@ -36,7 +28,7 @@ app.get('/test', (req, res) => {
 
 // Main
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public/index.html'));
+  res.sendFile(path.join(__dirname, '../../dist/index.html'));
 });
 
 

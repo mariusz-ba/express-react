@@ -1,22 +1,26 @@
 import path from 'path';
 
 export default {
-  entry: path.join(__dirname, '/client/index.js'),
+  entry: [
+    'babel-polyfill', 
+    path.join(__dirname, 'src/client/index.jsx')
+  ],
   output: {
     filename: 'bundle.js',
-    path: path.join(__dirname, '/server/public'),
+    path: path.join(__dirname, 'dist'),
     publicPath: '/'
   },
   module: {
     rules: [
       {
-        test: /\.js$/,
-        include: path.join(__dirname, 'client'),
+        test: /\.jsx?$/,
+        include: path.join(__dirname, 'src/client'),
         loaders: ['babel-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['.js']
-  }
+    extensions: ['.js', '.jsx']
+  },
+  mode: 'development'
 }

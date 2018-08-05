@@ -6,8 +6,8 @@ import {
 } from 'react-router-dom';
 
 // Components
-import About from './pages/About';
-import Home from './pages/Home';
+import About from './screens/about';
+import Home from './screens/home';
 
 export default () => {
   return (
